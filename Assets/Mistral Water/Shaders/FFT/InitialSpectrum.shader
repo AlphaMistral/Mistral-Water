@@ -48,7 +48,7 @@ Shader "Hidden/Mistral Water/Helper/Vertex/Initial Spectrum"
 				float phi2 = Phillips(_Resolution - n, _Resolution - m, _Amplitude, _Wind, _Resolution, _Length);
 
 				float2 h0 = hTilde0(i.texcoord.xy, _RandomSeed1 / 2, _RandomSeed2 * 2, phi1);
-				float2 h0conj = (hTilde0(i.texcoord.xy, _RandomSeed1, _RandomSeed2, phi2));
+				float2 h0conj = Conj(hTilde0(i.texcoord.xy, _RandomSeed1, _RandomSeed2, phi2));
 
 				return float4(h0, h0conj);
 			}
