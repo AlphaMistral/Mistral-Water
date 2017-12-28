@@ -42,7 +42,7 @@
 				float2 h0 = tex2D(_Initial, i.texcoord).rg;
 				float2 h0conj = tex2D(_Initial, i.texcoord).ba;
 				//h0conj = MultByI(h0conj);
-				float2 h = MultComplex(h0, pv) + MultComplex(h0conj, MultByI(pv));
+				float2 h = MultComplex(h0, pv) + MultComplex(h0conj, Conj(pv));
 				//return float4(h, h);
 				w = max(0.0001, w);
 				float2 hx = -MultByI(h * wave.x / w) * _Choppiness;
