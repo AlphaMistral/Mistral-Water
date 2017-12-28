@@ -1888,13 +1888,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dice: {fileID: 2800000, guid: 0974597a6d16d8146bc942522b10e5fe, type: 3}
-  mult: 1
+  mult: 1.5
   unitWidth: 1
   resolution: 128
-  length: 512
-  choppiness: 0.75
+  length: 434.48
+  choppiness: 0.2
   amplitude: 0.0001
-  wind: {x: 3, y: 12}
+  wind: {x: 14.45, y: 12}
   initialShader: {fileID: 4800000, guid: 21c4ac58ae010c34d80548258a7d04cb, type: 3}
   spectrumShader: {fileID: 4800000, guid: 2d916f91fd03d9d4db57387d980c2dca, type: 3}
   spectrumHeightShader: {fileID: 4800000, guid: 9aada42521b6c9b4bb7715f7cdc382ad,
