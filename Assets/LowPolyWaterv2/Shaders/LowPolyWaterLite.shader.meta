@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: bfbd133c547c89945a7459eb198a1666
+timeCreated: 1495369608
+licenseType: Store
+ShaderImporter:
+  defaultTextures:
+  - _FresnelTex: {fileID: 2800000, guid: bbe71c065be7eca47b24d1e03bf041b3, type: 3}
+  - _NoiseTex: {fileID: 2800000, guid: 6a1c221a7d11eaa4e875ae74a888d906, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

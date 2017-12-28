@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Island - Classic
+  m_Shader: {fileID: 4800000, guid: 64cc94e88500a904084a18cf5fcb2991, type: 3}
+  m_ShaderKeywords: _DEPTHFOG_ON _DISPLACEMENTMODE_GERSTNER _DISPLACEMENT_ON _DISTORTIONQUALITY_HIGH
+    _FOAM_ON _REFLECTIONTYPE_REALTIME
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 26409920616e41e44bcf1e1d60dcbfb2, type: 3}
+        m_Scale: {x: 20, y: 20}
+        m_Offset: {x: 0, y: 0}
+    - _Cube:
+        m_Texture: {fileID: 8900000, guid: 367ce3cf5eb9948419c7cfe09556c3c8, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FoamTex:
+        m_Texture: {fileID: 2800000, guid: f3ed797cad96fec41b94d8626de3f1ab, type: 3}
+        m_Scale: {x: 50, y: 50}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ReflectionTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Amplitude: 2
+    - _BumpScale: 1
+    - _BumpStrength: 0.818
+    - _Cutoff: 0.5
+    - _DISPLACEMENT: 1
+    - _Depth: 1.9
+    - _DetailNormalMapScale: 1
+    - _DisplacementMode: 2
+    - _Distortion: 43.4
+    - _DistortionQuality: 0
+    - _DstBlend: 0
+    - _EdgeFade: 1.26
+    - _EnableFog: 1
+    - _FOAM: 1
+    - _FoamSize: 1.76
+    - _Frequency: 4.3
+    - _Glossiness: 0.5
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Reflection: 0.474
+    - _ReflectionType: 1
+    - _RimPower: 8.5
+    - _Smoothing: 0.55
+    - _Smoothness: 0.95
+    - _Speed: 1
+    - _SpeedX: 0.5
+    - _SpeedY: 0.5
+    - _SrcBlend: 1
+    - _Steepness: 1.81
+    - _Tess: 11.4
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 0.45009732, g: 0.8161765, b: 0.74043596, a: 1}
+    - _CubeColor: {r: 0.68950045, g: 0.7736711, b: 0.8014706, a: 1}
+    - _DepthColor: {r: 0.049956758, g: 0.2895687, b: 0.32352942, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FoamColor: {r: 0.72794116, g: 0.72794116, b: 0.72794116, a: 1}
+    - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
+    - _WDirectionAB: {r: 0.3, g: 0.67, b: -0.86, a: -0.25}
+    - _WDirectionCD: {r: 0.15, g: 0.71, b: 0.5, a: 0.5}
+    - _WSpeed: {r: 1.2, g: 1.375, b: 1.1, a: 1.5}

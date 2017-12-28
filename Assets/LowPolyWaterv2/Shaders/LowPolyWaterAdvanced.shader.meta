@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8165be4dd0b12774d80426d906df9c38
+timeCreated: 1495370165
+licenseType: Store
+ShaderImporter:
+  defaultTextures:
+  - _FresnelTex: {fileID: 2800000, guid: bbe71c065be7eca47b24d1e03bf041b3, type: 3}
+  - _BumpTex: {fileID: 2800000, guid: 5172883f19560c34db24c164f824d406, type: 3}
+  - _NoiseTex: {fileID: 2800000, guid: 6a1c221a7d11eaa4e875ae74a888d906, type: 3}
+  - _ReflectionTex: {instanceID: 0}
+  - _RefractionTex: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
