@@ -5,6 +5,7 @@
 		_Anim ("Animation", 2D) = "black" {}
 		_Bump ("BUBUBU", 2D) = "bump" {}
 		_White ("WHWHWH", 2D) = "black" {}
+		_Height ("HHHHHH", 2D) = "black" {}
 		_ShallowColor ("Color in the Shallow Area", Color) = (1, 1, 1, 1)
 		_DeepColor ("Color in the Deep Area", Color) = (0, 0, 0, 0)
 		_DepthAmount ("The maximum of depth", Float) = 1

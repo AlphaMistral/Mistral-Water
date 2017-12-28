@@ -19,6 +19,7 @@ public class OceanRenderer : MonoBehaviour
 
 	public Shader initialShader;
 	public Shader spectrumShader;
+	public Shader spectrumHeightShader;
 	public Shader fftShader;
 	public Shader dispersionShader;
 	public Shader normalShader;
@@ -49,6 +50,7 @@ public class OceanRenderer : MonoBehaviour
 
 	private Material initialMat;
 	private Material spectrumMat;
+	private Material heightMat;
 	private Material fftMat;
 	private Material dispersionMat;
 	private Material normalMat;
@@ -60,6 +62,7 @@ public class OceanRenderer : MonoBehaviour
 	public RenderTexture pingTransformTexture;
 	public RenderTexture pongTransformTexture;
 	public RenderTexture spectrumTexture;
+	public RenderTexture heightTexture;
 	public RenderTexture displacementTexture;
 	public RenderTexture normalTexture;
 	public RenderTexture whiteTexture;
@@ -120,6 +123,7 @@ public class OceanRenderer : MonoBehaviour
 		initialMat = new Material(initialShader);
 		spectrumMat = new Material(spectrumShader);
 		fftMat = new Material(fftShader);
+		heightMat = new Material(spectrumHeightShader);
 		dispersionMat = new Material(dispersionShader);
 		normalMat = new Material(normalShader);
 		whiteMat = new Material(whiteShader);
@@ -135,6 +139,7 @@ public class OceanRenderer : MonoBehaviour
 		pingTransformTexture = new RenderTexture(resolution, resolution, 0, RenderTextureFormat.ARGBFloat);
 		pongTransformTexture = new RenderTexture(resolution, resolution, 0, RenderTextureFormat.ARGBFloat);
 		spectrumTexture = new RenderTexture(resolution, resolution, 0, RenderTextureFormat.ARGBFloat);
+		heightTexture = new RenderTexture(resolution, resolution, 0, RenderTextureFormat.ARGBFloat);
 		displacementTexture = new RenderTexture(resolution, resolution, 0, RenderTextureFormat.ARGBFloat);
 		normalTexture = new RenderTexture(resolution, resolution, 0, RenderTextureFormat.RGB565);
 		whiteTexture = new RenderTexture(resolution, resolution, 0, RenderTextureFormat.RGB565);
@@ -151,6 +156,10 @@ public class OceanRenderer : MonoBehaviour
 		spectrumMat.SetFloat("_Choppiness", choppiness);
 		spectrumMat.SetFloat("_Length", length);
 		spectrumMat.SetInt("_Resolution", resolution);
+
+		heightMat.SetFloat("_Choppiness", choppiness);
+		heightMat.SetFloat("_Length", length);
+		heightMat.SetInt("_Resolution", resolution);
 
 		fftMat.SetFloat("_TransformSize", resolution);
 		resolution /= 8;
@@ -197,6 +206,7 @@ public class OceanRenderer : MonoBehaviour
 	{
 		Graphics.Blit(null, initialTexture, initialMat);
 		spectrumMat.SetTexture("_Initial", initialTexture);
+		heightMat.SetTexture("_Initial", initialTexture);
 	}
 
 	private void GenerateTexture()
@@ -238,12 +248,47 @@ public class OceanRenderer : MonoBehaviour
 				fftMat.SetTexture("_Input", pongTransformTexture);
 				Graphics.Blit(null, pingTransformTexture, fftMat);
 			}
-			if (i == iterations / 2)
+			if (i == iterations / 2 - 1)
 			{
 				fftMat.DisableKeyword("_HORIZONTAL");
 				fftMat.EnableKeyword("_VERTICAL");
 			}
 		}
+
+		heightMat.SetTexture("_Phase", currentPhase? pingPhaseTexture : pongPhaseTexture);
+		Graphics.Blit(null, spectrumTexture, heightMat);
+		fftMat.EnableKeyword("_HORIZONTAL");
+		fftMat.DisableKeyword("_VERTICAL");
+		for (int i = 0; i < iterations; i++)
+		{
+			fftMat.SetFloat("_SubTransformSize", Mathf.Pow(2, (i % (iterations / 2)) + 1));
+			if (i == 0)
+			{
+				fftMat.SetTexture("_Input", spectrumTexture);
+				Graphics.Blit(null, pingTransformTexture, fftMat);
+			}
+			else if (i == iterations - 1)
+			{
+				fftMat.SetTexture("_Input", (iterations % 2 == 0) ? pingTransformTexture : pongTransformTexture);
+				Graphics.Blit(null, heightTexture, fftMat);
+			}
+			else if (i % 2 == 1)
+			{
+				fftMat.SetTexture("_Input", pingTransformTexture);
+				Graphics.Blit(null, pongTransformTexture, fftMat);
+			}
+			else
+			{
+				fftMat.SetTexture("_Input", pongTransformTexture);
+				Graphics.Blit(null, pingTransformTexture, fftMat);
+			}
+			if (i == iterations / 2 - 1)
+			{
+				fftMat.DisableKeyword("_HORIZONTAL");
+				fftMat.EnableKeyword("_VERTICAL");
+			}
+		}
+
 		normalMat.SetTexture("_DisplacementMap", displacementTexture);
 		Graphics.Blit(null, normalTexture, normalMat);
 		whiteMat.SetTexture("_Displacement", displacementTexture);
@@ -256,6 +301,7 @@ public class OceanRenderer : MonoBehaviour
 			oceanMat.SetTexture("_Anim", displacementTexture);
 			oceanMat.SetTexture("_Bump", normalTexture);
 			oceanMat.SetTexture("_White", whiteTexture);
+			oceanMat.SetTexture("_Height", heightTexture);
 			saved = true;
 		}
 	}

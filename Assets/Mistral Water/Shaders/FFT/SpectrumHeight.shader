@@ -1,4 +1,4 @@
-﻿Shader "Hidden/Mistral Water/Helper/Vertex/Spectrum"
+﻿Shader "Hidden/Mistral Water/Helper/Vertex/Spectrum Height"
 {
 	Properties
 	{
@@ -43,11 +43,7 @@
 				float2 h0conj = tex2D(_Initial, i.texcoord).ba;
 				//h0conj = MultByI(h0conj);
 				float2 h = MultComplex(h0, pv) + MultComplex(h0conj, Conj(pv));
-				//return float4(h, h);
-				w = max(0.0001, w);
-				float2 hx = -MultByI(h * wave.x / w) * _Choppiness;
-				float2 hz = -MultByI(h * wave.y / w) * _Choppiness;
-				return float4(hx, hz);
+				return float4(h, h);
 			}
 
 			ENDCG

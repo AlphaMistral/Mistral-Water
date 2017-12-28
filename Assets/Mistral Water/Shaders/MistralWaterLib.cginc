@@ -7,6 +7,7 @@
 
 uniform sampler2D _Anim;
 uniform sampler2D _Bump;
+uniform sampler2D _Height;
 uniform sampler2D _White;
 uniform sampler2D _GrabTexture;
 uniform half4 _GrabTexture_TexelSize;

@@ -16,7 +16,8 @@ VertexOutput vert(VertexInput v)
 
 	#endif
 
-	v.vertex.xyz += tex2Dlod(_Anim, float4(v.texcoord, 0, 0)).rgb / 8;
+	v.vertex.y += tex2Dlod(_Height, float4(v.texcoord, 0, 0)).r / 8;
+	v.vertex.xz += tex2Dlod(_Anim, float4(v.texcoord, 0, 0)).rb / 8;
 
 	o.pos = UnityObjectToClipPos(v.vertex);
 	o.grabUV = ComputeGrabScreenPos(o.pos);
@@ -43,7 +44,7 @@ VertexOutput vert(VertexInput v)
 
 	o.ambient = ShadeSH9(half4(worldNormal, 1));
 
-	o.color = v.color;
+	o.color = v.color * 0;
 
 	o.color = tex2Dlod(_White, float4(v.texcoord, 0, 0)).r;
 
