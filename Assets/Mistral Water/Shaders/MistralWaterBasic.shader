@@ -82,9 +82,9 @@
 			#include "MistralWaterCommon.cginc"
 
 			#pragma target 3.0
-			//#pragma hull hs_surf
-			//#pragma domain ds_surf
-			#pragma vertex vert
+			#pragma hull hs_surf
+			#pragma domain ds_surf
+			#pragma vertex tessvert
 			#pragma fragment frag
 			#pragma multi_compile_fwdbase
 			#pragma multi_compile_fog

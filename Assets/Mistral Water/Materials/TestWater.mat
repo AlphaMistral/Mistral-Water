@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: TestWater
   m_Shader: {fileID: 4800000, guid: b13ed00e64f067a44868005035aa9344, type: 3}
-  m_ShaderKeywords: _DEPTHFOG_ON _DISPLACEMENTMODE_OFF _FOAM_ON _REFLECTIONTYPE_CUBEMAP
+  m_ShaderKeywords: _DEPTHFOG_ON _DISPLACEMENTMODE_GERSTNER _FOAM_ON _REFLECTIONTYPE_CUBEMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -94,7 +94,7 @@ Material:
     - _Cutoff: 0.5
     - _DepthAmount: 1.19
     - _DetailNormalMapScale: 1
-    - _DisplacementMode: 0
+    - _DisplacementMode: 2
     - _Distortion: 63.2
     - _DstBlend: 0
     - _EdgeFade: 3
