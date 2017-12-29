@@ -33,15 +33,17 @@
 				float texelSize = _Length / _Resolution;
 
 				float3 center = tex2D(_DisplacementMap, i.texcoord).rgb / 8;
-				float3 right = float3(texelSize, 0, 0) + tex2D(_DisplacementMap, i.texcoord + float4(texel, 0, 0, 0)).rgb / 8 - center;
-				float3 left = float3(-texelSize, 0, 0) + tex2D(_DisplacementMap, i.texcoord + float4(-texel, 0, 0, 0)).rgb / 8 - center;
-				float3 top = float3(0, 0, -texelSize) + tex2D(_DisplacementMap, i.texcoord + float4(0, -texel, 0, 0)).rgb / 8 - center;
-				float3 bottom = float3(0, 0, texelSize) + tex2D(_DisplacementMap, i.texcoord + float4(0, texel, 0, 0)).rgb / 8 - center;
+				float3 right = float3(texelSize, 0, 0) / 8 + tex2D(_DisplacementMap, i.texcoord + float4(texel, 0, 0, 0)).rgb / 8 - center;
+				float3 left = float3(-texelSize, 0, 0) / 8 + tex2D(_DisplacementMap, i.texcoord + float4(-texel, 0, 0, 0)).rgb / 8 - center;
+				float3 top = float3(0, 0, -texelSize) / 8 + tex2D(_DisplacementMap, i.texcoord + float4(0, -texel, 0, 0)).rgb / 8 - center;
+				float3 bottom = float3(0, 0, texelSize) / 8 + tex2D(_DisplacementMap, i.texcoord + float4(0, texel, 0, 0)).rgb / 8 - center;
 
 				float3 topRight = cross(right, top);
 				float3 topLeft = cross(top, left);
 				float3 bottomLeft = cross(left, bottom);
 				float3 bottomRight = cross(bottom, right);
+
+				return float4(normalize(float3(-tex2D(_DisplacementMap, i.texcoord).r, 8, -tex2D(_DisplacementMap, i.texcoord).b)), 1.0);
 
 				return float4(normalize(topRight + topLeft + bottomLeft + bottomRight), 1.0);
 			}
