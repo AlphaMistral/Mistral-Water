@@ -79,10 +79,10 @@
 				//return saturate(dot(i.normal, float3(0, 1, 0)));
 				float4 diffuse = (dot(i.normal, i.lightDir));
 				diffuse = pow(saturate(diffuse * (1 - _LightWrap) + _LightWrap), 2 * _LightWrap + 1) * _Tint;
-				float H = normalize(i.viewDir + i.lightDir);
+				float3 H = normalize(i.viewDir + i.lightDir);
 				float NdotH = saturate(dot(i.normal, H));
 				float4 specular = _SpecColor * saturate(pow(NdotH, _Glossiness));
-				return diffuse + specular + i.color / 2;
+				return diffuse + specular + pow(i.color / 2, 2);
 			}
 
 			ENDCG
