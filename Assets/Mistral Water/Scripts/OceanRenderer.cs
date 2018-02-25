@@ -142,8 +142,8 @@ public class OceanRenderer : MonoBehaviour
 		spectrumTexture = new RenderTexture(resolution, resolution, 0, RenderTextureFormat.ARGBFloat);
 		heightTexture = new RenderTexture(resolution, resolution, 0, RenderTextureFormat.ARGBFloat);
 		displacementTexture = new RenderTexture(resolution, resolution, 0, RenderTextureFormat.ARGBFloat);
-		normalTexture = new RenderTexture(resolution, resolution, 0, RenderTextureFormat.RGB565);
-		whiteTexture = new RenderTexture(resolution, resolution, 0, RenderTextureFormat.RGB565);
+		normalTexture = new RenderTexture(resolution, resolution, 0, RenderTextureFormat.ARGBFloat);
+		whiteTexture = new RenderTexture(resolution, resolution, 0, RenderTextureFormat.ARGBFloat);
 		initialMat.SetFloat("_RandomSeed1", UnityEngine.Random.value * 10f);
 		initialMat.SetFloat("_RandomSeed2", UnityEngine.Random.value * 10f);
 		initialMat.SetFloat("_Amplitude", amplitude);

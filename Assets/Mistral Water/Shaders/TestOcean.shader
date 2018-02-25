@@ -80,7 +80,6 @@
 			float4 frag(VertexOutput i) : COLOR
 			{
 				i.normal = tex2D(_Bump, i.texcoord).rgb;
-				i.normal = i.normal * 2 - 1;
 				i.normal = normalize(i.normal);
 				i.normal = UnityObjectToWorldNormal(i.normal);
 				float4 diffuse = saturate(dot(i.normal, i.lightDir));
@@ -88,9 +87,7 @@
 				float3 H = normalize(i.viewDir + i.lightDir);
 				float NdotH = saturate(dot(i.normal, H));
 				float4 specular = _SpecColor * saturate(pow(NdotH, _Glossiness)) * _LightColor0;
-				float4 rim = _RimColor * pow(max(0, 1 - dot(i.normal, i.viewDir)), 3);
-				//return (1 - max(0, dot(i.normal, i.viewDir)));
-				//return float4(i.normal, 1);
+				float4 rim = _RimColor * pow(max(0, 1 - dot(i.normal, i.viewDir)), 2);
 				return diffuse + specular * 0 + pow(i.color / 2, 2) + rim;
 			}
 
