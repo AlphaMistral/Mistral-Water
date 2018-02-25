@@ -40,6 +40,8 @@
 			uniform float _LightWrap;
 			uniform fixed4 _RimColor;
 
+			uniform float4 _LightColor0;
+
 			struct VertexInput
 			{
 				float4 vertex : POSITION;
@@ -82,11 +84,11 @@
 				i.normal = normalize(i.normal);
 				i.normal = UnityObjectToWorldNormal(i.normal);
 				float4 diffuse = saturate(dot(i.normal, i.lightDir));
-				diffuse = pow(saturate(diffuse * (1 - _LightWrap) + _LightWrap), 2 * _LightWrap + 1) * _Tint;
+				diffuse = pow(saturate(diffuse * (1 - _LightWrap) + _LightWrap), 2 * _LightWrap + 1) * _Tint * _LightColor0;
 				float3 H = normalize(i.viewDir + i.lightDir);
 				float NdotH = saturate(dot(i.normal, H));
-				float4 specular = _SpecColor * saturate(pow(NdotH, _Glossiness));
-				float4 rim = _RimColor * pow(max(0, 1 - dot(i.normal, i.viewDir)), 5);
+				float4 specular = _SpecColor * saturate(pow(NdotH, _Glossiness)) * _LightColor0;
+				float4 rim = _RimColor * pow(max(0, 1 - dot(i.normal, i.viewDir)), 3);
 				//return (1 - max(0, dot(i.normal, i.viewDir)));
 				//return float4(i.normal, 1);
 				return diffuse + specular * 0 + pow(i.color / 2, 2) + rim;
