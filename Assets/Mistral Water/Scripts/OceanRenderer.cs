@@ -162,6 +162,9 @@ public class OceanRenderer : MonoBehaviour
 		heightMat.SetFloat("_Length", length);
 		heightMat.SetInt("_Resolution", resolution);
 
+		normalMat.SetFloat("_Length", length);
+		normalMat.SetFloat("_Resolution", resolution);
+
 		fftMat.SetFloat("_TransformSize", resolution);
 		resolution /= 8;
 	}
@@ -228,32 +231,34 @@ public class OceanRenderer : MonoBehaviour
 		int iterations = Mathf.CeilToInt((float)Math.Log(resolution * 8, 2)) * 2;
 		for (int i = 0; i < iterations; i++)
 		{
+			RenderTexture blitTarget;
 			fftMat.SetFloat("_SubTransformSize", Mathf.Pow(2, (i % (iterations / 2)) + 1));
 			if (i == 0)
 			{
 				fftMat.SetTexture("_Input", spectrumTexture);
-				Graphics.Blit(null, pingTransformTexture, fftMat);
+				blitTarget = pingTransformTexture;
 			}
 			else if (i == iterations - 1)
 			{
 				fftMat.SetTexture("_Input", (iterations % 2 == 0) ? pingTransformTexture : pongTransformTexture);
-				Graphics.Blit(null, displacementTexture, fftMat);
+				blitTarget = displacementTexture;
 			}
 			else if (i % 2 == 1)
 			{
 				fftMat.SetTexture("_Input", pingTransformTexture);
-				Graphics.Blit(null, pongTransformTexture, fftMat);
+				blitTarget = pongTransformTexture;
 			}
 			else
 			{
 				fftMat.SetTexture("_Input", pongTransformTexture);
-				Graphics.Blit(null, pingTransformTexture, fftMat);
+				blitTarget = pingTransformTexture;
 			}
-			if (i == iterations / 2 - 1)
+			if (i == iterations / 2)
 			{
 				fftMat.DisableKeyword("_HORIZONTAL");
 				fftMat.EnableKeyword("_VERTICAL");
 			}
+			Graphics.Blit(null, blitTarget, fftMat);
 		}
 
 		heightMat.SetTexture("_Phase", currentPhase? pingPhaseTexture : pongPhaseTexture);
@@ -262,35 +267,38 @@ public class OceanRenderer : MonoBehaviour
 		fftMat.DisableKeyword("_VERTICAL");
 		for (int i = 0; i < iterations; i++)
 		{
+			RenderTexture blitTarget;
 			fftMat.SetFloat("_SubTransformSize", Mathf.Pow(2, (i % (iterations / 2)) + 1));
 			if (i == 0)
 			{
 				fftMat.SetTexture("_Input", spectrumTexture);
-				Graphics.Blit(null, pingTransformTexture, fftMat);
+				blitTarget = pingTransformTexture;
 			}
 			else if (i == iterations - 1)
 			{
 				fftMat.SetTexture("_Input", (iterations % 2 == 0) ? pingTransformTexture : pongTransformTexture);
-				Graphics.Blit(null, heightTexture, fftMat);
+				blitTarget = heightTexture;
 			}
 			else if (i % 2 == 1)
 			{
 				fftMat.SetTexture("_Input", pingTransformTexture);
-				Graphics.Blit(null, pongTransformTexture, fftMat);
+				blitTarget = pongTransformTexture;
 			}
 			else
 			{
 				fftMat.SetTexture("_Input", pongTransformTexture);
-				Graphics.Blit(null, pingTransformTexture, fftMat);
+				blitTarget = pingTransformTexture;
 			}
-			if (i == iterations / 2 - 1)
+			if (i == iterations / 2)
 			{
 				fftMat.DisableKeyword("_HORIZONTAL");
 				fftMat.EnableKeyword("_VERTICAL");
 			}
+			Graphics.Blit(null, blitTarget, fftMat);
 		}
 
 		normalMat.SetTexture("_DisplacementMap", displacementTexture);
+		normalMat.SetTexture("_HeightMap", heightTexture);
 		Graphics.Blit(null, normalTexture, normalMat);
 		whiteMat.SetTexture("_Displacement", displacementTexture);
 		whiteMat.SetTexture("_Bump", normalTexture);

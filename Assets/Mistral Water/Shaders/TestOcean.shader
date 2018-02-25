@@ -79,7 +79,6 @@
 			{
 				i.normal = tex2D(_Bump, i.texcoord).rgb;
 				i.normal = i.normal * 2 - 1;
-				i.normal.y = 1;
 				i.normal = normalize(i.normal);
 				i.normal = UnityObjectToWorldNormal(i.normal);
 				float4 diffuse = saturate(dot(i.normal, i.lightDir));
@@ -88,9 +87,10 @@
 				float NdotH = saturate(dot(i.normal, H));
 				float4 specular = _SpecColor * saturate(pow(NdotH, _Glossiness));
 				float4 rim = _RimColor * (1 - max(0, dot(i.normal, i.viewDir)));
+				//return (1 - max(0, dot(i.normal, i.viewDir)));
 				//return rim;
 				//return float4(i.normal, 1);
-				return diffuse + specular + pow(i.color / 2, 2) + rim;
+				return diffuse + specular * 0 + pow(i.color / 2, 2) + rim;
 			}
 
 			ENDCG
