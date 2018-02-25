@@ -87,7 +87,7 @@
 				float3 H = normalize(i.viewDir + i.lightDir);
 				float NdotH = saturate(dot(i.normal, H));
 				float4 specular = _SpecColor * saturate(pow(NdotH, _Glossiness)) * _LightColor0;
-				float4 rim = _RimColor * pow(max(0, 1 - dot(i.normal, i.viewDir)), 2);
+				float4 rim = _RimColor * pow(max(0, 1 - saturate(dot(i.normal, i.viewDir))), 1.5);
 				return diffuse + specular * 0 + pow(i.color / 2, 2) + rim;
 			}
 
