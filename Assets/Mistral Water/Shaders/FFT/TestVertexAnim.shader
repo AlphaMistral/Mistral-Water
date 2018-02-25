@@ -38,7 +38,7 @@
 				v2f o;
 
 				v.vertex.y += tex2Dlod(_Anim, v.texcoord).g / 8;
-				v.vertex.xz += tex2Dlod(_Anim, v.texcoord).rb / 8 * 1;
+				v.vertex.xz += tex2Dlod(_Anim, v.texcoord).rb / 8;
 
 				//v.vertex.xy += tex2Dlod(_Anim, v.texcoord).rb / 1000;
 
