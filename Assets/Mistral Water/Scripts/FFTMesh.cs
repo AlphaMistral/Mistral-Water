@@ -212,7 +212,7 @@ public class FFTMesh : MonoBehaviour
 				n += new Vector3(-kx * htilde_c.y, 0f, -kz * htilde_c.y);
 				if (k_length < EPSILON)
 					continue;
-				d += new Vector2(kx / k_length * htilde_c.y, -kz / k_length * htilde_c.x);
+				d += new Vector2(kx / k_length * htilde_c.y, -kz / k_length * htilde_c.y);
 			}
 		}
 		nor = Vector3.Normalize(Vector3.up - n);

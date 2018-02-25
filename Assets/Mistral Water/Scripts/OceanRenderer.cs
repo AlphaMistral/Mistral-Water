@@ -54,6 +54,7 @@ public class OceanRenderer : MonoBehaviour
 	private Material fftMat;
 	private Material dispersionMat;
 	private Material normalMat;
+	private Material normalSpecMat;
 	private Material whiteMat;
 
 	public RenderTexture initialTexture;

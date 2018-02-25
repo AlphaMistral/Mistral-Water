@@ -43,7 +43,7 @@
 				float3 bottomLeft = cross(left, bottom);
 				float3 bottomRight = cross(bottom, right);
 
-				return float4(normalize(float3(-tex2D(_DisplacementMap, i.texcoord).r, 8, -tex2D(_DisplacementMap, i.texcoord).b)), 1.0);
+				//return float4(normalize(float3(abs(tex2D(_DisplacementMap, i.texcoord).r), 8, abs(tex2D(_DisplacementMap, i.texcoord).b))), 1.0);
 
 				return float4(normalize(topRight + topLeft + bottomLeft + bottomRight), 1.0);
 			}

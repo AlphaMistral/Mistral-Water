@@ -44,9 +44,9 @@ VertexOutput vert(VertexInput v)
 
 	o.ambient = ShadeSH9(half4(worldNormal, 1));
 
-	o.color = v.color * 0;
+	o.color = v.color / 1.2;
 
-	o.color = tex2Dlod(_White, float4(v.texcoord, 0, 0)).r;
+	//o.color = tex2Dlod(_White, float4(v.texcoord, 0, 0)).r;
 
 	#ifdef UNITY_PASS_FORWARDBASE
 

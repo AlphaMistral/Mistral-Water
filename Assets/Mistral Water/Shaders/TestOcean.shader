@@ -10,6 +10,7 @@
 		_Tint ("Tint", Color) = (0.5, 0.65, 0.75, 1)
 		_SpecColor ("Specular Color", Color) = (1, 0.25, 0, 1)
 		_Glossiness ("Glossiness", Float) = 64
+		_RimColor ("Rim Color", Color) = (0, 0, 1, 1)
 	}
 
 	SubShader
@@ -37,6 +38,7 @@
 			uniform float4 _SpecColor;
 			uniform float _Glossiness;
 			uniform float _LightWrap;
+			uniform fixed4 _RimColor;
 
 			struct VertexInput
 			{
@@ -69,20 +71,26 @@
 
 				o.lightDir = normalize(WorldSpaceLightDir(v.vertex));
 				o.viewDir = normalize(WorldSpaceViewDir(v.vertex));
-
+				o.texcoord = v.texcoord;
 				return o;
 			}
 
 			float4 frag(VertexOutput i) : COLOR
 			{
-				//return float4(i.normal, 1);
-				//return saturate(dot(i.normal, float3(0, 1, 0)));
-				float4 diffuse = (dot(i.normal, i.lightDir));
+				i.normal = tex2D(_Bump, i.texcoord).rgb;
+				i.normal = i.normal * 2 - 1;
+				i.normal.y = 1;
+				i.normal = normalize(i.normal);
+				i.normal = UnityObjectToWorldNormal(i.normal);
+				float4 diffuse = saturate(dot(i.normal, i.lightDir));
 				diffuse = pow(saturate(diffuse * (1 - _LightWrap) + _LightWrap), 2 * _LightWrap + 1) * _Tint;
 				float3 H = normalize(i.viewDir + i.lightDir);
 				float NdotH = saturate(dot(i.normal, H));
 				float4 specular = _SpecColor * saturate(pow(NdotH, _Glossiness));
-				return diffuse + specular + pow(i.color / 2, 2);
+				float4 rim = _RimColor * (1 - max(0, dot(i.normal, i.viewDir)));
+				//return rim;
+				//return float4(i.normal, 1);
+				return diffuse + specular + pow(i.color / 2, 2) + rim;
 			}
 
 			ENDCG
