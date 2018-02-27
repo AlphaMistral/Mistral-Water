@@ -23,9 +23,9 @@ ExportedObj/
 *.svd
 *.pdb
 
-Assets/Calm Water
-Assets/LowPolyWaterv2
-Assets/Standard Assets
+Assets/Calm Water/
+Assets/LowPolyWaterv2/
+Assets/Standard Assets/
 Assets/Calm Water.meta
 Assets/LowPolyWaterv2.meta
 Assets/Standard Assets.meta
