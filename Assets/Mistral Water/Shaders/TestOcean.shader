@@ -2,12 +2,12 @@
 {
 	Properties
 	{
-		_Anim ("fd", 2D) = "black" {}
-		_Height ("gasf", 2D) = "black" {}
-		_Bump ("hasdf",2D) = "bump" {}
-		_White ("sdaf", 2D) = "black" {}
-		_LightWrap ("asdf", Float) = 1 
-		_Tint ("Tint", Color) = (0.5, 0.65, 0.75, 1)
+		_Anim ("Displacement Map", 2D) = "black" {}
+		_Height ("Height Map", 2D) = "black" {}
+		_Bump ("Normal Map",2D) = "bump" {}
+		_White ("White Cap Map", 2D) = "black" {}
+		_LightWrap ("Light Wrapping Value", Float) = 1 
+		_Tint ("Color Tint", Color) = (0.5, 0.65, 0.75, 1)
 		_SpecColor ("Specular Color", Color) = (1, 0.25, 0, 1)
 		_Glossiness ("Glossiness", Float) = 64
 		_RimColor ("Rim Color", Color) = (0, 0, 1, 1)
