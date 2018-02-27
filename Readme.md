@@ -1,5 +1,7 @@
 # Mistral Water Simualtion System
 
+![](Screenshot.png)
+
 * WARNING: Do NOT directly use the system in your project. This repository is still under development. If you detect any error or have any suggestion please raise an issue or contact me at Mistral@weymire.com
 
 ### Why I created this Repo
