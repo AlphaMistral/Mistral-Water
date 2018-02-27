@@ -7,8 +7,6 @@ public class OceanRenderer : MonoBehaviour
 {
 	#region Public Variables
 
-	public Texture2D dice;
-
 	public float mult = 2f;
 	public float unitWidth = 1f;
 	public int resolution = 256;
@@ -57,16 +55,16 @@ public class OceanRenderer : MonoBehaviour
 	private Material normalSpecMat;
 	private Material whiteMat;
 
-	public RenderTexture initialTexture;
-	public RenderTexture pingPhaseTexture;
-	public RenderTexture pongPhaseTexture;
-	public RenderTexture pingTransformTexture;
-	public RenderTexture pongTransformTexture;
-	public RenderTexture spectrumTexture;
-	public RenderTexture heightTexture;
-	public RenderTexture displacementTexture;
-	public RenderTexture normalTexture;
-	public RenderTexture whiteTexture;
+	private RenderTexture initialTexture;
+	private RenderTexture pingPhaseTexture;
+	private RenderTexture pongPhaseTexture;
+	private RenderTexture pingTransformTexture;
+	private RenderTexture pongTransformTexture;
+	private RenderTexture spectrumTexture;
+	private RenderTexture heightTexture;
+	private RenderTexture displacementTexture;
+	private RenderTexture normalTexture;
+	private RenderTexture whiteTexture;
 
 	private Material oceanMat;
 
