@@ -32,3 +32,7 @@
 * Ocean Renderer will integrate water particles to allow water dynamics. 
 * Ocean Renderer will support flow map. 
 * Pond Water Renderer will support more custom effects. 
+
+### LICENSE
+
+* MIT
