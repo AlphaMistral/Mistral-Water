@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: Pond Water Mat
   m_Shader: {fileID: 4800000, guid: b13ed00e64f067a44868005035aa9344, type: 3}
-  m_ShaderKeywords: _DEPTHFOG_ON _DISPLACEMENTMODE_GERSTNER _FOAM_ON _REFLECTIONTYPE_CUBEMAP
+  m_ShaderKeywords: _DEPTHFOG_ON _DISPLACEMENTMODE_GERSTNER _FOAM_ON _REFLECTIONTYPE_REALTIME
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -87,7 +87,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Amplitude: 10.2
+    - _Amplitude: 10
     - _BumpScale: 0.619
     - _BumpSpeedX: 0.5
     - _BumpSpeedY: 0.5
@@ -102,7 +102,7 @@ Material:
     - _EnableFog: 1
     - _FoamSize: 3
     - _Frequency: 2.58
-    - _FresnelAngle: 45
+    - _FresnelAngle: 3.7
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -111,8 +111,8 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _ReflectionStrength: 0.194
-    - _ReflectionType: 1
+    - _ReflectionStrength: 1
+    - _ReflectionType: 0
     - _Smoothing: 1
     - _Smoothness: 0.8
     - _SmoothnessTextureChannel: 0
