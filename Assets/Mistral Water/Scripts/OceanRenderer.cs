@@ -106,7 +106,6 @@ public class OceanRenderer : MonoBehaviour
 			oldWind.x = wind.x;
 			oldWind.y = wind.y;
 			RenderInitial();
-			Debug.Log("Param Changed! ");
 		}
 	}
 
