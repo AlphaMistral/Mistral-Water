@@ -5,10 +5,13 @@
 
 #include "MistralWaterProperty.cginc"
 
-uniform sampler2D _Anim;
-uniform sampler2D _Bump;
-uniform sampler2D _Height;
-uniform sampler2D _White;
+#if _DISPLACEMENTMODE_FFT
+	uniform sampler2D _Anim;
+	uniform sampler2D _Bump;
+	uniform sampler2D _Height;
+	uniform sampler2D _White;
+#endif
+
 uniform sampler2D _GrabTexture;
 uniform half4 _GrabTexture_TexelSize;
 uniform sampler2D_float _CameraDepthTexture;
