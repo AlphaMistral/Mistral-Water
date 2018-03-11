@@ -293,13 +293,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d70ac175181bc4d9adfb8cd3265fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dice: {fileID: 2800000, guid: 0974597a6d16d8146bc942522b10e5fe, type: 3}
   mult: 1.5
   unitWidth: 1
   resolution: 128
   length: 434.48
   choppiness: 0.46
-  amplitude: 0.0001
+  amplitude: 0.41
   wind: {x: 14.45, y: 12}
   initialShader: {fileID: 4800000, guid: 21c4ac58ae010c34d80548258a7d04cb, type: 3}
   spectrumShader: {fileID: 4800000, guid: 2d916f91fd03d9d4db57387d980c2dca, type: 3}
@@ -309,17 +308,6 @@ MonoBehaviour:
   dispersionShader: {fileID: 4800000, guid: 12885d2a1a42c4c44a62faed049a0f93, type: 3}
   normalShader: {fileID: 4800000, guid: a9e529eb686332a4691cbc08853ec8ba, type: 3}
   whiteShader: {fileID: 4800000, guid: 870a8f53e1970f54ba070e16dd12b13b, type: 3}
-  fff: {fileID: 2800000, guid: 9fe38b7605d329443acfc739811124da, type: 3}
-  initialTexture: {fileID: 0}
-  pingPhaseTexture: {fileID: 0}
-  pongPhaseTexture: {fileID: 0}
-  pingTransformTexture: {fileID: 0}
-  pongTransformTexture: {fileID: 0}
-  spectrumTexture: {fileID: 0}
-  heightTexture: {fileID: 0}
-  displacementTexture: {fileID: 0}
-  normalTexture: {fileID: 0}
-  whiteTexture: {fileID: 0}
 --- !u!23 &1170006397
 MeshRenderer:
   m_ObjectHideFlags: 0
