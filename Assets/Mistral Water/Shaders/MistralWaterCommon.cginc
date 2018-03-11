@@ -12,12 +12,19 @@ VertexOutput vert(VertexInput v)
 
 	#if !_DISPLACEMENTMODE_OFF
 
-		Displacement(v);
+		#if !_DISPLACEMENTMODE_FFT
+
+			Displacement(v);
+
+		#else
+
+			/// Just do not ask me what the bloody hell 8 is. 
+			v.vertex.y += tex2Dlod(_Height, float4(v.texcoord, 0, 0)).x / 8;
+			v.vertex.xz += tex2Dlod(_Anim, float4(v.texcoord, 0, 0)).xz / 8;
+
+		#endif
 
 	#endif
-
-	v.vertex.y += tex2Dlod(_Height, float4(v.texcoord, 0, 0)).r / 8;
-	v.vertex.xz += tex2Dlod(_Anim, float4(v.texcoord, 0, 0)).rb / 8;
 
 	o.pos = UnityObjectToClipPos(v.vertex);
 	o.grabUV = ComputeGrabScreenPos(o.pos);
@@ -33,7 +40,7 @@ VertexOutput vert(VertexInput v)
 	#endif
 
 	float4 worldPos = mul(unity_ObjectToWorld, v.vertex);
-	half3 worldNormal = UnityObjectToWorldNormal(tex2Dlod(_Bump, float4(v.texcoord, 0, 0)).rgb);
+	half3 worldNormal = UnityObjectToWorldNormal(v.normal);
 	half3 worldTangent = UnityObjectToWorldDir(v.tangent);
 	half3 worldBitangent = cross(worldTangent, worldNormal);
 
@@ -44,9 +51,15 @@ VertexOutput vert(VertexInput v)
 
 	o.ambient = ShadeSH9(half4(worldNormal, 1));
 
-	o.color = v.color / 1.2;
+	#if _DISPLACEMENTMODE_FFT
 
-	//o.color = tex2Dlod(_White, float4(v.texcoord, 0, 0)).r;
+		o.color = tex2Dlod(_White, float4(v.texcoord, 0, 0)).r;
+
+	#else
+
+		o.color = v.color / 1.2;
+
+	#endif
 
 	#ifdef UNITY_PASS_FORWARDBASE
 
@@ -65,7 +78,7 @@ fixed4 frag(VertexOutput i) : SV_TARGET
 
 	half3 worldNormal = normalize(half3(dot(i.tSpace0.xyz, normal), dot(i.tSpace1.xyz, normal), dot(i.tSpace2.xyz, normal)));
 	half3 viewDirection = normalize(UnityWorldSpaceViewDir(i.worldPos));
-
+	//return fixed4(worldNormal, 1);
 	#ifdef CULL_FRONT
 
 		worldViewDir = -worldViewDir;
@@ -196,7 +209,7 @@ fixed4 frag(VertexOutput i) : SV_TARGET
 
 	#endif
 
-	return fixed4(color + pow(saturate(i.color.rgb), 1.6), 1);
+	return fixed4(color + 0 * pow(saturate(i.color.rgb), 1.6), 1);
 }
 
 #ifdef UNITY_CAN_COMPILE_TESSELLATION
