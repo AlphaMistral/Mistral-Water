@@ -2,10 +2,6 @@
 {
 	Properties
 	{
-		_Anim ("Animation", 2D) = "black" {}
-		_Bump ("BUBUBU", 2D) = "bump" {}
-		_White ("WHWHWH", 2D) = "black" {}
-		_Height ("HHHHHH", 2D) = "black" {}
 		_ShallowColor ("Color in the Shallow Area", Color) = (1, 1, 1, 1)
 		_DeepColor ("Color in the Deep Area", Color) = (0, 0, 0, 0)
 		_DepthAmount ("The maximum of depth", Float) = 1
@@ -44,7 +40,7 @@
 		_FoamTex ("Foam Texture", 2D) = "white" {}
 		_FoamSize ("Foam Size", Float) = 0.5
 
-		[KeywordEnum(Off, Wave, Gerstner)]
+		[KeywordEnum(Off, Wave, Gerstner, FFT)]
 		_DisplacementMode ("Displacement Mode", Float) = 0
 
 		_Amplitude ("Amplitude", Float) = 0.05
@@ -93,7 +89,7 @@
 			#pragma shader_feature _REFLECTIONTYPE_CUBEMAP _REFLECTIONTYPE_REALTIME
 			#pragma shader_feature __ _FOAM_ON
 			#pragma shader_feature __ _DEPTHFOG_ON
-			#pragma shader_feature __ _DISPLECEMENTMODE_OFF _DISPLACEMENTMODE_WAVE _DISPLACEMENTMODE_GERSTNER
+			#pragma shader_feature __ _DISPLECEMENTMODE_OFF _DISPLACEMENTMODE_WAVE _DISPLACEMENTMODE_GERSTNER _DISPLACEMENTMODE_FFT
 
 			ENDCG
 		}

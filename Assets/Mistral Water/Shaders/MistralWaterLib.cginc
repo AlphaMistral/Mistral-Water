@@ -165,7 +165,7 @@ inline void Displacement(inout VertexInput v)
 	#if _DISPLACEMENTMODE_GERSTNER
 
 	half3 squashedVertex = worldPos.xzz;
-	GerstnerLevelOne(offsets, normal, v.vertex.xyz, squashedVertex, 
+	Gerstner(offsets, normal, v.vertex.xyz, squashedVertex, 
 		_Amplitude * 0.01, _Frequency, _Steepness,
 		_WSpeed, _WDirectionAB, _WDirectionCD
 	);
