@@ -74,6 +74,7 @@
 				o.lightDir = normalize(WorldSpaceLightDir(v.vertex));
 				o.viewDir = normalize(WorldSpaceViewDir(v.vertex));
 				o.texcoord = v.texcoord;
+
 				return o;
 			}
 
@@ -84,11 +85,14 @@
 				i.normal = UnityObjectToWorldNormal(i.normal);
 				float4 diffuse = saturate(dot(i.normal, i.lightDir));
 				diffuse = pow(saturate(diffuse * (1 - _LightWrap) + _LightWrap), 2 * _LightWrap + 1) * _Tint * _LightColor0;
+				i.viewDir = normalize(i.viewDir);
+				i.lightDir = normalize(i.lightDir);
 				float3 H = normalize(i.viewDir + i.lightDir);
 				float NdotH = saturate(dot(i.normal, H));
 				float4 specular = _SpecColor * saturate(pow(NdotH, _Glossiness)) * _LightColor0;
 				float4 rim = _RimColor * pow(max(0, 1 - saturate(dot(i.normal, i.viewDir))), 1.5);
-				return diffuse + specular * 0 + pow(i.color / 2, 2) + rim;
+				//return saturate(pow(NdotH, _Glossiness));
+				return diffuse + specular + pow(i.color / 2, 2) + rim;
 			}
 
 			ENDCG

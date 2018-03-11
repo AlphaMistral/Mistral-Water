@@ -7,11 +7,14 @@ public class OceanRenderer : MonoBehaviour
 {
 	#region Public Variables
 
+	[Range(0f, 3f)]
 	public float mult = 2f;
 	public float unitWidth = 1f;
 	public int resolution = 256;
 	public float length = 256f;
+	[Range(0f, 2f)]
 	public float choppiness = 1.5f;
+	[Range(0f, 2f)]
 	public float amplitude = 1f;
 	public Vector2 wind;
 
@@ -22,8 +25,6 @@ public class OceanRenderer : MonoBehaviour
 	public Shader dispersionShader;
 	public Shader normalShader;
 	public Shader whiteShader;
-
-	public Texture2D fff;
 
 	#endregion
 
@@ -74,6 +75,7 @@ public class OceanRenderer : MonoBehaviour
 
 	private void Awake()
 	{
+		/// Normally this parameter should be pretty small ... 
 		filter = GetComponent<MeshFilter>();
 		if (filter == null)
 		{
@@ -95,7 +97,7 @@ public class OceanRenderer : MonoBehaviour
 		spectrumMat.SetFloat("_Length", length);
 		if (oldLength != length || oldWind != wind || oldAmplitude != amplitude)
 		{
-			initialMat.SetFloat("_Amplitude", amplitude);
+			initialMat.SetFloat("_Amplitude", amplitude / 10000f);
 			initialMat.SetFloat("_Length", length);
 			initialMat.SetVector("_Wind", wind);
 			oldLength = length;
@@ -104,6 +106,7 @@ public class OceanRenderer : MonoBehaviour
 			oldWind.x = wind.x;
 			oldWind.y = wind.y;
 			RenderInitial();
+			Debug.Log("Param Changed! ");
 		}
 	}
 
@@ -144,7 +147,7 @@ public class OceanRenderer : MonoBehaviour
 		whiteTexture = new RenderTexture(resolution, resolution, 0, RenderTextureFormat.ARGBFloat);
 		initialMat.SetFloat("_RandomSeed1", UnityEngine.Random.value * 10f);
 		initialMat.SetFloat("_RandomSeed2", UnityEngine.Random.value * 10f);
-		initialMat.SetFloat("_Amplitude", amplitude);
+		initialMat.SetFloat("_Amplitude", amplitude / 10000f);
 		initialMat.SetFloat("_Length", length);
 		initialMat.SetFloat("_Resolution", resolution);
 		initialMat.SetVector("_Wind", wind);
