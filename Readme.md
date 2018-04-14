@@ -14,7 +14,7 @@
 * Based on Tessendorf's Paper and Stockham FFT. 
 * Supports whitecap based on Jacobian determinant. 
 * No external textures needed. 
-* Only tested on DirectX. 
+* Supports Direct3D, OpenGL Core, Metal, OpenGL ES and Vulkan. 
 * Mistral Water/Demo/Ocean Demo.unity is the demo of the ocean rendering. Mistral Water/Demo/FFT Mesh.unity just shows the theory of ocean rendering with CPU only. 
 
 ### Pond/Lake Water Renderer
